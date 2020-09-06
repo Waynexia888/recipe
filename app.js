@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const db = require("./confg/keys").mongoURI;
 const users = require("./routes/api/users");
+const User = require('./models/User');
 
 mongoose
     .connect(db, {
@@ -15,6 +16,12 @@ mongoose
 
 
 app.get("/", (req, res) => {
+    const user = new User({
+        name: "jim",
+        email: "jim@jim.jim",
+        password: "jimisgreat123"
+    })
+    user.save()
     res.send("Hello Wayne!")
 });
 
